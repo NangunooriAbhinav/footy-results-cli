@@ -1,4 +1,4 @@
-module github.com/NangunooriAbhinav/footy-results-cli
+module footy_res
 
 go 1.23.0
 

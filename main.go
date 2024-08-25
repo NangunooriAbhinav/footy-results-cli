@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"io"
-	"net/http"
 	"os"
+
+	"footy_res/api"
 
 	"github.com/joho/godotenv"
 )
@@ -18,37 +18,7 @@ func main(){
 	url := os.Getenv("API_URL")
 	key := os.Getenv("API_KEY")
 
-	req, err := http.NewRequest("GET", url, nil)
+	data,err := api.FetchData(url,key)
 
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	req.Header.Add("X-Auth-Token", key)
-
-	client := &http.Client{}
-	res, err := client.Do(req)
-	if err != nil {
-		fmt.Println(err)
-	}
-	defer res.Body.Close()
-
-	if res.StatusCode != 200 {
-		fmt.Println("Status code: ", res.StatusCode)
-	}
-
-	body,err := io.ReadAll(res.Body)
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	fmt.Println(string(body))
-	// var data 
-	// err = json.Unmarshal(body, &data)
-	// if err != nil {
-	// 	fmt.Println(err)
-	// }
-
-	// fmt.Println(data.Matches[0].HomeTeam.Name)
-
+	fmt.Println(data.Matches[0].HomeTeam.Name)
 }

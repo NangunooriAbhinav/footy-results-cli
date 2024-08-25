@@ -1,4 +1,4 @@
-package main
+package models
 
 type Data struct {
 	Filters   Filters   `json:"filters"`
@@ -90,4 +90,8 @@ type Referee struct {
 	Name        string `json:"name"`
 	Type        string `json:"type"`
 	Nationality string `json:"nationality"`
+}
+
+type Error struct {
+	Message string `json:"message"`
 }
